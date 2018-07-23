@@ -1,0 +1,13 @@
+@import './_config.scss';
+@import './common.scss';
+input {
+    padding: 10px;
+    border: 1px solid gray;
+    width: 80%;
+    margin: 20px auto;
+}
+
+button {
+    width: 60%;
+    margin: 10px auto;
+}

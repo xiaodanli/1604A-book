@@ -1,4 +1,4 @@
-require(['jquery', 'swiper', 'bscroll', 'getSlideDirection', 'text!bookTB', 'render', 'text!indexTpl', 'text!bookLR'], function($, swiper, bscroll, getSlideDirection, bookTB, render, indexTpl, bookLR) {
+require(['jquery', 'swiper', 'bscroll', 'getSlideDirection', 'text!bookTB', 'render', 'text!indexTpl', 'text!bookLR', 'storage'], function($, swiper, bscroll, getSlideDirection, bookTB, render, indexTpl, bookLR, storage) {
     $('body').append(bookTB);
     $('body').append(indexTpl);
     $('body').append(bookLR);
@@ -6,7 +6,7 @@ require(['jquery', 'swiper', 'bscroll', 'getSlideDirection', 'text!bookTB', 'ren
     var _line = $('.line');
 
     // 实例化wrap-swiper
-    var wrapSwiper = new swiper('.wrap-swiper');
+    var wrapSwiper;
 
     //滑动处理
     var startX, startY;
@@ -192,6 +192,11 @@ require(['jquery', 'swiper', 'bscroll', 'getSlideDirection', 'text!bookTB', 'ren
         //点击换一换
         var renderNum = 0;
         render("#recommend-tpl", ".recommend", recommendData[renderNum], true);
+
+        $('.content').show();
+
+        wrapSwiper = new swiper('.wrap-swiper');
+
         $(".change-btn").on("click", function() {
             renderNum++;
             if (renderNum == recommendData.length) {
@@ -205,6 +210,38 @@ require(['jquery', 'swiper', 'bscroll', 'getSlideDirection', 'text!bookTB', 'ren
     //切换数据的样式
     $(".switch-btn").on("click", function() {
         $(".shelf-list").toggleClass('chang-style');
+    })
+
+    //点击类别
+    $('.types').on('click', 'dl', function() {
+        var txt = $(this).find('dd').text();
+        var type;
+        if (txt == '女生') {
+            type = 'female';
+        } else if (txt == '男生') {
+            type = 'boy';
+        }
+        location.href = "../../page/list.html?type=" + type
+    })
+
+    //点击本周最火
+
+    $('.hot').on('click', 'li', function() {
+        var fiction_id = $(this).attr('data-id');
+
+        location.href = '../../page/detail.html?fiction_id=' + fiction_id;
+    })
+
+    //点击person
+
+    $('.icon-person').on('click', function() {
+        var code = storage.get('code') || 0;
+
+        if (code) {
+            location.href = '../../page/my.html';
+        } else {
+            location.href = '../../page/login.html';
+        }
     })
 
 })

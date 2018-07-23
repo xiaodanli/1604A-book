@@ -16,6 +16,20 @@ var mock = require('./mock');
 
 var querystring = require('querystring');
 
+var userList = [{
+        username: 'lixd',
+        pwd: 123
+    },
+    {
+        username: 'xty',
+        pwd: 456
+    },
+    {
+        username: 'qwl',
+        pwd: 789
+    }
+]
+
 gulp.task('devServer', ['sass'], function() {
     gulp.src('src')
         .pipe(server({
@@ -29,7 +43,27 @@ gulp.task('devServer', ['sass'], function() {
                 // /api/recommend?pagenum=1   
                 //pathname /api/recommend 
                 console.log(querystring.unescape(req.url))
-                if (/\/api/g.test(pathname)) {
+                if (pathname === '/api/login') {
+                    var arr = [];
+
+                    req.on('data', function(chunk) {
+                        arr.push(chunk);
+                    })
+
+                    req.on('end', function() {
+                        var params = querystring.parse(Buffer.concat(arr).toString());
+                        console.log(params);
+                        var isHas = userList.some(function(item) {
+                            return item.username == params.username && item.pwd == params.pwd
+                        })
+
+                        if (isHas) {
+                            res.end(JSON.stringify({ code: 1, msg: '用户登录成功' }))
+                        } else {
+                            res.end(JSON.stringify({ code: 0, msg: '登录失败' }))
+                        }
+                    })
+                } else if (/\/api/g.test(pathname)) {
                     // /api/index
                     res.end(JSON.stringify({ code: 1, data: mock(querystring.unescape(req.url)) }))
                 } else {

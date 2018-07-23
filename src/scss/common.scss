@@ -40,6 +40,12 @@ body {
             right: 0;
             top: 0;
         }
+        .title {
+            color: $black-color;
+            font-size: pxTorem(14px);
+            padding-left: pxTorem(44px);
+            line-height: pxTorem(44px);
+        }
         .icon-back {
             width: pxTorem(44px);
             height: pxTorem(44px);
@@ -113,18 +119,18 @@ body {
         width: 100%;
         flex: 1;
         overflow: hidden;
-        .block {
+    }
+    .block {
+        width: 100%;
+        border-bottom: pxTorem(10px) solid $border-color;
+        h1 {
             width: 100%;
-            border-bottom: pxTorem(10px) solid $border-color;
-            h1 {
-                width: 100%;
-                height: pxTorem(44px);
-                border-left: pxTorem(6px) solid $tab-active-color;
-                border-bottom: 1px solid $border-color;
-                font-size: pxTorem(18px);
-                line-height: pxTorem(44px);
-                padding-left: pxTorem(10px);
-            }
+            height: pxTorem(44px);
+            border-left: pxTorem(6px) solid $tab-active-color;
+            border-bottom: 1px solid $border-color;
+            font-size: pxTorem(18px);
+            line-height: pxTorem(44px);
+            padding-left: pxTorem(10px);
         }
     }
 }

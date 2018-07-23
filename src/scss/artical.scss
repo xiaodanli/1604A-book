@@ -1,0 +1,185 @@
+@import './_config.scss';
+@import './common.scss';
+@import './_reset.scss';
+@import './_mixin.scss';
+.artical-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: $article-bg1;
+    padding: pxTorem(10px);
+    box-sizing: border-box;
+    h1 {
+        font-size: pxTorem(30px);
+        font-weight: bold;
+        color: $title-color;
+        line-height: 1.5;
+        border-bottom: 1px solid $title-color;
+    }
+    p {
+        text-indent: 2em;
+        font-size: pxTorem(14px);
+        line-height: 1.5;
+        margin-top: pxTorem(10px);
+        color: $artical-color;
+    }
+}
+
+.set-wrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    &>div:nth-child(1) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .set-t {
+        width: 100%;
+        height: pxTorem(44px);
+        background-color: rgba(0, 0, 0, .9);
+        color: $write-color;
+        line-height: pxTorem(44px);
+        .icon-cricle-back {
+            width: pxTorem(44px);
+            height: pxTorem(44px);
+            display: block;
+            @include bg('../imgs/icon-circle-back.png', pxTorem(10px));
+            background-size: pxTorem(20px);
+            padding-left: pxTorem(44px);
+        }
+    }
+    .mask {
+        width: 100%;
+        flex: 1;
+    }
+    .set-b {
+        width: 100%;
+        color: $write-color;
+        background-color: rgba(0, 0, 0, .9);
+        .set-chapter {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: pxTorem(14px);
+            padding: pxTorem(20px) pxTorem(30px);
+            box-sizing: border-box;
+            border-bottom: 1px solid $write-color;
+        }
+        .set-style {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: pxTorem(10px) pxTorem(30px);
+            box-sizing: border-box;
+            dt {
+                width: pxTorem(44px);
+                height: pxTorem(44px);
+            }
+            dd {
+                text-align: center;
+            }
+            .chapter-btn {
+                dt {
+                    @include bg('../imgs/icon-chapter.png');
+                    background-size: pxTorem(20px);
+                }
+            }
+            .font-btn {
+                dt {
+                    @include bg('../imgs/icon-font.png');
+                    background-size: pxTorem(20px);
+                }
+                &.active {
+                    dt {
+                        @include bg('../imgs/icon-font-active.png');
+                        background-size: pxTorem(20px);
+                    }
+                }
+            }
+            .day-btn {
+                dt {
+                    @include bg('../imgs/icon-light.png');
+                    background-size: pxTorem(20px);
+                }
+            }
+            .down-btn {
+                dt {
+                    @include bg('../imgs/icon-down.png');
+                    background-size: pxTorem(20px);
+                }
+            }
+        }
+    }
+    .set-panel {
+        width: 100%;
+        position: absolute;
+        bottom: pxTorem(80px);
+        left: 0;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, .9);
+        color: $write-color;
+        &>div {
+            display: flex;
+            align-items: center;
+            margin: pxTorem(10px);
+            padding: pxTorem(15px) pxTorem(0px);
+            box-sizing: border-box;
+            span {
+                font-size: pxTorem(16px);
+                width: pxTorem(60px);
+                text-align: center;
+            }
+            button {
+                padding: pxTorem(4px) pxTorem(40px);
+                border: 1px solid $write-color;
+                font-size: pxTorem(14px);
+                color: $write-color;
+                border-radius: pxTorem(20px);
+                background-color: transparent;
+                margin-right: pxTorem(15px);
+            }
+            .bg-list {
+                li {
+                    float: left;
+                    width: pxTorem(34px);
+                    height: pxTorem(34px);
+                    border-radius: 50%;
+                    background-color: $article-bg1;
+                    margin-right: pxTorem(10px);
+                    position: relative;
+                    &.active:before {
+                        content: '';
+                        width: pxTorem(36px);
+                        height: pxTorem(36px);
+                        border-radius: 50%;
+                        border: pxTorem(2px) solid red;
+                        position: absolute;
+                        top: pxTorem(-3px);
+                        left: pxTorem(-3px);
+                    }
+                    &:nth-child(2) {
+                        background-color: $article-bg2;
+                    }
+                    &:nth-child(3) {
+                        background-color: $article-bg3;
+                    }
+                    &:nth-child(4) {
+                        background-color: $article-bg4;
+                    }
+                    &:nth-child(5) {
+                        background-color: $article-bg5;
+                    }
+                    &:nth-child(6) {
+                        background-color: $article-bg6;
+                    }
+                }
+            }
+        }
+    }
+}
