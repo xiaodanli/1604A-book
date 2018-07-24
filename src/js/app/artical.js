@@ -54,10 +54,18 @@ require(['jquery', 'storage'], function($, storage) {
 
     var index = storage.get('index') || 0;
 
+    var _dayBtn = $('.day-btn');
+
     if (status) {
-        light();
+        _dayBtn.find('dd').text('夜间');
+        _dayBtn.removeClass('light');
+        $('.artical-content').css('background', bg);
+        $('.bg-list li').eq(index).addClass('active').siblings().removeClass('active');
     } else {
-        night();
+        _dayBtn.find('dd').text('白天');
+        _dayBtn.addClass('light');
+        $('.artical-content').css('background', '#0f1410');
+        $('.bg-list li').eq(5).addClass('active').siblings().removeClass('active');
     }
 
     //切换背景
@@ -77,29 +85,19 @@ require(['jquery', 'storage'], function($, storage) {
         //status true  白天的状态 ---- >夜间
         //status false  夜间的状态 ----->白天
         status = !status;
-
         if (status) {
-            light();
+            $(this).find('dd').text('夜间');
+            $(this).removeClass('light');
+            $('.artical-content').css('background', bg);
         } else {
-            night();
+            $(this).find('dd').text('白天');
+            $(this).addClass('light');
+            $('.artical-content').css('background', '#0f1410');
+            $('.bg-list li').eq(5).addClass('active').siblings().removeClass('active');
         }
         var tag = status === true ? '夜间' : '白天';
         storage.set('tag', tag);
     })
-
-    function light() {
-        $(this).find('dd').text('夜间');
-        $(this).removeClass('light');
-        $('.artical-content').css('background', bg);
-        $('.bg-list li').eq(index).addClass('active').siblings().removeClass('active');
-    }
-
-    function night() {
-        $(this).find('dd').text('白天');
-        $(this).addClass('light');
-        $('.artical-content').css('background', '#0f1410');
-        $('.bg-list li').eq(5).addClass('active').siblings().removeClass('active');
-    }
 
 
 
