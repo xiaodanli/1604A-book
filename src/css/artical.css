@@ -621,6 +621,9 @@ html {
         background: url("../imgs/icon-font-active.png") no-repeat center center;
         background-size: 0.53333rem; }
       .set-wrap .set-b .set-style .day-btn dt {
+        background: url("../imgs/icon-night.png") no-repeat center center;
+        background-size: 0.53333rem; }
+      .set-wrap .set-b .set-style .day-btn.light dt {
         background: url("../imgs/icon-light.png") no-repeat center center;
         background-size: 0.53333rem; }
       .set-wrap .set-b .set-style .down-btn dt {

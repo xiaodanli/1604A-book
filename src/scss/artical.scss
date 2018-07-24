@@ -104,8 +104,14 @@
             }
             .day-btn {
                 dt {
-                    @include bg('../imgs/icon-light.png');
+                    @include bg('../imgs/icon-night.png');
                     background-size: pxTorem(20px);
+                }
+                &.light {
+                    dt {
+                        @include bg('../imgs/icon-light.png');
+                        background-size: pxTorem(20px);
+                    }
                 }
             }
             .down-btn {
