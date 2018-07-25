@@ -1,0 +1,24 @@
+{
+    "name": "1604a-book",
+    "version": "1.0.0",
+    "description": "1604A-book",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "gulp dev",
+        "build": "gulp build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xiaodanli/1604A-book.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/xiaodanli/1604A-book/issues"
+    },
+    "homepage": "https://github.com/xiaodanli/1604A-book#readme",
+    "devDependencies": {
+        "gulp": "^3.9.1"
+    }
+}
