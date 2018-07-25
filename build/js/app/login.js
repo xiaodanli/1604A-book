@@ -1,0 +1,1 @@
+require(["jquery","storage"],function(n,a){n(".login-btn").on("click",function(){var e=n("#username").val(),o=n("#pwd").val();e?o?n.ajax({url:"/api/login",dataType:"json",data:{username:e,pwd:o},type:"post",success:function(e){console.log(e),1===e.code?(a.set("code",e.code),history.go(-1)):alert(e.msg)},error:function(e){console.warn(e)}}):alert("密码不能为空"):alert("用户不为空")})});

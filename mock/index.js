@@ -17,6 +17,11 @@ var detail352876 = require('./mock/352876.json');
 
 var chapterList = require('./mock/chapter-list.json');
 
+var artical1 = require('./mock/artical/data1.json');
+var artical2 = require('./mock/artical/data2.json');
+var artical3 = require('./mock/artical/data3.json');
+var artical4 = require('./mock/artical/data4.json');
+
 var dataObj = {
     "/api/index": home,
     "/api/detail": detail,
@@ -28,7 +33,11 @@ var dataObj = {
     '/api/search?key=择天记': searchTian,
     '/api/list?type=female': female,
     '/api/detail?fiction_id=352876': detail352876,
-    '/api/chapterList?fiction_id=352876': chapterList
+    '/api/chapterList?fiction_id=352876': chapterList,
+    '/api/artical?fiction_id=352876&chapter_id=1': artical1,
+    '/api/artical?fiction_id=352876&chapter_id=2': artical2,
+    '/api/artical?fiction_id=352876&chapter_id=3': artical3,
+    '/api/artical?fiction_id=352876&chapter_id=4': artical4
 }
 
 module.exports = function(url) {

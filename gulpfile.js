@@ -6,6 +6,10 @@ var sass = require('gulp-sass');
 
 var autoprefixer = require('gulp-autoprefixer');
 
+var clean = require('gulp-clean-css');
+
+var uglify = require('gulp-uglify');
+
 var url = require('url');
 
 var fs = require('fs');
@@ -30,8 +34,13 @@ var userList = [{
     }
 ]
 
+//开发环境 ---- 起服务
 gulp.task('devServer', ['sass'], function() {
-    gulp.src('src')
+    serverFun('src');
+})
+
+function serverFun(serverPath) {
+    return gulp.src(serverPath)
         .pipe(server({
             port: 9090,
             middleware: function(req, res, next) {
@@ -68,24 +77,69 @@ gulp.task('devServer', ['sass'], function() {
                     res.end(JSON.stringify({ code: 1, data: mock(querystring.unescape(req.url)) }))
                 } else {
                     pathname = pathname === '/' ? '/index.html' : pathname;
-                    res.end(fs.readFileSync(path.join(__dirname, 'src', pathname)))
+                    res.end(fs.readFileSync(path.join(__dirname, serverPath, pathname)))
                 }
             }
         }))
+}
+//开发环境 ---- css
+gulp.task('sass', function() {
+    css('./src/css');
 })
 
-gulp.task('sass', function() {
+function css(cssPath) {
     return gulp.src('./src/scss/*.scss')
         .pipe(sass())
         .pipe(autoprefixer({
             browsers: ['last 2 versions', 'Android>=4.0']
         }))
-        .pipe(gulp.dest('./src/css'))
-})
+        .pipe(clean())
+        .pipe(gulp.dest(cssPath))
+}
 
 gulp.task('watch', function() {
     gulp.watch('./src/scss/*.scss', ['sass'])
 })
 
-
+//开发环境
 gulp.task('dev', ['devServer', 'watch'])
+
+//打包上线--- css
+
+gulp.task('buildCss', function() {
+    css('./build/css');
+})
+
+gulp.task('copyCss', function() {
+    gulp.src('./src/css/swiper-3.4.2.min.css')
+        .pipe(gulp.dest('./build/css'))
+})
+
+gulp.task('copyImg', function() {
+    gulp.src('./src/imgs/*.{png,jpg}')
+        .pipe(gulp.dest('./build/imgs'))
+})
+
+gulp.task('buildJs', function() {
+    gulp.src('./src/js/{app,common}/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./build/js'))
+})
+
+gulp.task('copyJs', function() {
+    gulp.src(['./src/js/**/*.js', '!./src/js/{app,common}/*.js'])
+        .pipe(gulp.dest('./build/js'))
+})
+
+gulp.task('buildHtml', function() {
+    gulp.src('./src/**/*.html')
+        .pipe(gulp.dest('./build'))
+})
+
+//上线
+
+gulp.task('build', ['buildCss', 'copyCss', 'copyImg', 'buildJs', 'copyJs', 'buildHtml'])
+
+gulp.task('buildServer', function() {
+    serverFun('build');
+})

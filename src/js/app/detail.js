@@ -29,7 +29,7 @@ require(['jquery', 'render', 'getRequest', 'text!detailTpl', 'text!bookTB', 'sto
                 $('#start-btn').on('click', function() {
                     var code = storage.get('code') || 0;
                     if (code) {
-                        location.href = '../../page/aritcal.html';
+                        location.href = '../../page/aritcal.html?fiction_id=' + fiction_id;
                     } else {
                         location.href = '../../page/login.html';
                     }
